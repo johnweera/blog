@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ form.media }}
+    <title>Document</title>
+    <style>
+        .ql-toolbar {
+            display: none;
+        }
+        #quill-id_body {
+            border-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebApp101</h1>
+    <p>
+        | <a href="{% url 'home:index' %}">Home</a>
+        | <a href="{% url 'blog:index' %}">Blog</a>
+
+    {% if user.is_authenticated %}    
+        | <a href="{% url 'blog:list' %}">{{user.username}}</a>
+        | <a href="{% url 'accounts:logout' %}">Logout</a>
+    {% else %}
+        | {{user}}
+        | <a href="{% url 'accounts:login' %}">Login</a>
+    {% endif %}
+    </p>
+    <hr>
+    {% include 'blog/menu.html' %}
+    <h3>{{ post.title }}</h3>
+        {{ form.body }}
+    <p>Author : {{post.author}}</p>
+
+    {% if user.is_authenticated and user == post.author %}
+        <a href="{% url 'blog:update' post.id %}"><button type="button">Update</button></a> |
+        <a href="{% url 'blog:delete' post.id %}">Delete</a>
+    {% endif %}
+  
+    <script>
+        var editable_elements = document.querySelectorAll("[contenteditable=true]");
+        for(var i=0; i<editable_elements.length; i++)
+            editable_elements[i].setAttribute("contenteditable", false);
+    </script>
+</body>
+</html>
