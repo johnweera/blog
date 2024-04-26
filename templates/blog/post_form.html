@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+{{ form.media }}
+<div class="w3-container">
+    <form action="" method="post">{% csrf_token %}
+        <p>{{ form.title }}</p>
+        <p>{{ form.body }}</p>
+        {% if user.username == "john" %}
+        <p>{{ form.youtube }}</p>
+        {% endif %}
+        <p><input type="submit" value="Post"></p>
+        
+    </form>
+</div>
+{% endblock %}

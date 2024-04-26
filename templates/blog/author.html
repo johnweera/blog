@@ -1,0 +1,13 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+    <h2>Author : {{ user }}</h2>
+    <p><a href="{% url 'blog:add' %}">New Post</a></p>
+    {% for posts in object_list %}
+        {% if posts.author == request.user %}
+            <p><a href="{% url 'blog:detail' pk=posts.id %}">{{ posts.title }}</a> {{posts.author}}</p>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

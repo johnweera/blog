@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+{{ form.media }}
+{% if request.user == post.author %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p><label>Title : </label>{{ form.title }}</p>
+        
+        <p>{{ form.body }}</p>
+        {% if user.username == "john" %}
+        <p>{{ form.youtube }}</p>
+        {% endif %}
+        <p>Post Author : {{post.author}}</p>
+        <input type="submit" value="Post"> | <a href="{% url 'blog:delete' post.id %}">Delete</a>
+    </form>
+{% else %}
+    <p>User : {{user}}</p>
+    <p>You can't edit this page!</p>
+{% endif %}
+
+{% endblock %}
