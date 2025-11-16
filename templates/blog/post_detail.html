@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %} {% block title %}{{ post.title }}{% endblock %}
+{% block extra_head %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css"
+/>
+<style>
+  pre {
+    padding: 10px;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("pre").forEach(function (block) {
+      block.classList.add("hljs");
+      hljs.highlightElement(block);
+    });
+  });
+</script>
+{% endblock %} {% block content %}
+<h1>{{ post.title }}</h1>
+<p><small>Updated {{ post.updated_at|date:"Y-m-d H:i" }}</small></p>
+<article>{{ post.content.html|safe }}</article>
+<p>
+  <a href="{% url 'blog:post-update' post.pk %}">Edit</a> |
+  <a href="{% url 'blog:post-delete' post.pk %}">Delete</a>
+</p>
+{% endblock %}

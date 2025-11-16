@@ -1,0 +1,63 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# C extensions
+*.so
+
+# --- Django / Project ---
+*.sqlite3
+db.sqlite3
+
+# Migrations (optional — keep if production)
+# Uncomment if you don't want to push migration files
+# */migrations/*
+# !*/migrations/__init__.py
+
+# Media files (uploaded by users)
+media/
+
+# Static (collected staticfiles)
+staticfiles/
+static/
+
+# Local settings (if you use)
+local_settings.py
+
+# --- Environment / Virtualenv ---
+.env
+*.env
+env/
+venv/
+venv*/
+ENV/
+.venv/
+
+# Pycharm / VSCode
+.idea/
+.vscode/
+
+# --- OS generated ---
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log
+
+# --- Cache ---
+*.cache
+.cache/
+
+# --- Bytecode / compiled ---
+*.egg-info/
+*.egg
+dist/
+build/
+
+# --- Tooling ---
+coverage/
+htmlcov/
+pytest_cache/
